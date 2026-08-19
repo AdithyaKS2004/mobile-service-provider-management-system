@@ -60,7 +60,8 @@ public class SecurityConfig {
                         "/api/customer/**",
                         "/api/user/**",
                         "/api/recharge",
-                        "/api/sim/**"
+                        "/api/sim/**",
+                        "/api/user/subscriptions/**"
                 ).hasRole("CUSTOMER")
 
                 // Everything else requires authentication
