@@ -15,6 +15,9 @@ import com.provider.telecom.entity.User;
 import com.provider.telecom.enums.PaymentStatus;
 import com.provider.telecom.enums.SimStatus;
 import com.provider.telecom.enums.SubscriptionStatus;
+import com.provider.telecom.exception.BusinessException;
+import com.provider.telecom.exception.ResourceAccessDeniedException;
+import com.provider.telecom.exception.ResourceNotFoundException;
 import com.provider.telecom.repository.PlanRepository;
 import com.provider.telecom.repository.SimCardRepository;
 import com.provider.telecom.repository.SubscriptionRepository;
@@ -53,30 +56,46 @@ public class RechargeService {
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() ->
-                        new RuntimeException("User not found"));
+                        new ResourceNotFoundException("User not found"));
 
         SimCard simCard = simCardRepository.findById(simCardId)
                 .orElseThrow(() ->
-                        new RuntimeException("SIM not found"));
+                        new ResourceNotFoundException("SIM not found"));
 
         if (!simCard.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException(
+            throw new ResourceAccessDeniedException(
                     "You are not authorized to recharge this SIM");
         }
 
         if (simCard.getStatus() != SimStatus.ACTIVE) {
-            throw new RuntimeException(
+            throw new BusinessException(
                     "SIM must be ACTIVE before recharge");
         }
 
         Plan plan = planRepository.findById(planId)
                 .orElseThrow(() ->
-                        new RuntimeException("Plan not found"));
+                        new ResourceNotFoundException("Plan not found"));
 
         if (!plan.isActive()) {
-            throw new RuntimeException(
+            throw new BusinessException(
                     "Selected plan is inactive");
         }
+
+        subscriptionRepository
+                .findBySimCardIdAndStatus(
+                        simCardId,
+                        SubscriptionStatus.ACTIVE
+                )
+                .ifPresent(existingSubscription -> {
+
+                    existingSubscription.setStatus(
+                            SubscriptionStatus.EXPIRED
+                    );
+
+                    subscriptionRepository.save(
+                            existingSubscription
+                    );
+                });
 
         LocalDate startDate = LocalDate.now();
 
@@ -143,7 +162,7 @@ public class RechargeService {
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() ->
-                        new RuntimeException("User not found"));
+                        new ResourceNotFoundException("User not found"));
 
         return subscriptionRepository
                 .findBySimCardUserIdAndStatus(

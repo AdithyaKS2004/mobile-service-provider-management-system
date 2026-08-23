@@ -1,6 +1,7 @@
 package com.provider.telecom.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,8 +18,13 @@ public interface SubscriptionRepository
             SubscriptionStatus status
     );
     
-    List<Subscription> findBySimCardIdAndStatus(
+    /*List<Subscription> findBySimCardIdAndStatus(
             Long simCardId,
             SubscriptionStatus status
-    );
+    );*/
+
+    Optional<Subscription> findBySimCardIdAndStatus(
+            Long simCardId,
+            SubscriptionStatus status
+);
 }

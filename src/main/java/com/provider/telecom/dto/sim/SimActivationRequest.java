@@ -1,34 +1,20 @@
 package com.provider.telecom.dto.sim;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotNull;
 
 public class SimActivationRequest {
 
-    @NotBlank
-    @Pattern(regexp = "^[0-9]{10}$")
-    private String phoneNumber;
-
-    @NotBlank
-    @Pattern(regexp = "^[0-9]{15}$")
-    private String imsiNumber;
+    @NotNull
+    private Long simCardId;
 
     public SimActivationRequest() {
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public Long getSimCardId() {
+        return simCardId;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getImsiNumber() {
-        return imsiNumber;
-    }
-
-    public void setImsiNumber(String imsiNumber) {
-        this.imsiNumber = imsiNumber;
+    public void setSimCardId(Long simCardId) {
+        this.simCardId = simCardId;
     }
 }

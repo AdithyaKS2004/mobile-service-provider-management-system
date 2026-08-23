@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.provider.telecom.dto.plan.CreatePlanRequest;
 import com.provider.telecom.dto.plan.PlanResponse;
 import com.provider.telecom.entity.Plan;
+import com.provider.telecom.exception.ResourceNotFoundException;
 import com.provider.telecom.repository.PlanRepository;
 
 @Service
@@ -52,7 +53,7 @@ public class PlanService {
 
         Plan plan = planRepository.findById(planId)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Plan not found with id: " + planId
                         )
                 );
@@ -76,7 +77,7 @@ public class PlanService {
 
         Plan plan = planRepository.findById(planId)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Plan not found with id: " + planId
                         )
                 );

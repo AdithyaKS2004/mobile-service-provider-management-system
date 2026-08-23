@@ -22,7 +22,7 @@ public class SimCard {
     private SimStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public SimCard() {

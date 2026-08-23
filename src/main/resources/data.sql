@@ -26,6 +26,16 @@
 -- VALUES
 --     (1, '9000000002', '404450123456789', 'ACTIVE', 2);
 
+INSERT INTO sim_cards
+(phone_number, imsi_number, status, user_id)
+VALUES
+('9871111111', '404123456789001', 'AVAILABLE', NULL);
+
+INSERT INTO sim_cards
+(phone_number, imsi_number, status, user_id)
+VALUES
+('9872222222', '404123456789002', 'AVAILABLE', NULL);
+
 
 -- ============================================
 -- PLANS
