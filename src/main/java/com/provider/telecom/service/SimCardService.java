@@ -83,7 +83,7 @@ public class SimCardService {
                                 "User not found"));
 
         SimCard simCard = simCardRepository
-                .findById(request.getSimCardId())
+                .findByIdWithLock(request.getSimCardId())
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "SIM not found"));

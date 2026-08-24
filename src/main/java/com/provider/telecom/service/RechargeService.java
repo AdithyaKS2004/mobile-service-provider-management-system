@@ -62,7 +62,7 @@ public class RechargeService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("SIM not found"));
 
-        if (!simCard.getUser().getId().equals(user.getId())) {
+        if (simCard.getUser() == null || !simCard.getUser().getId().equals(user.getId())) {
             throw new ResourceAccessDeniedException(
                     "You are not authorized to recharge this SIM");
         }

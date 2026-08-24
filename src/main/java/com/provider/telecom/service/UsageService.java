@@ -53,7 +53,8 @@ public class UsageService {
                 ).orElseThrow(() ->
                         new ResourceNotFoundException("SIM not found"));
 
-        if (!simCard.getUser().getId().equals(user.getId())) {
+        if (simCard.getUser() == null || 
+                !simCard.getUser().getId().equals(user.getId())) {
             throw new ResourceAccessDeniedException(
                     "You are not authorized to use this SIM");
         }
@@ -103,6 +104,11 @@ public class UsageService {
 
         if (request.getUsageType() == UsageType.CALL) {
 
+            if (request.getAmount() % 1 != 0) {
+                throw new BusinessException(
+                    "Call usage must be specified in whole minutes");
+            }
+            
             int requestedMinutes =
                     request.getAmount().intValue();
 
