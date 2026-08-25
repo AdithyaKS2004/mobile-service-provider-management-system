@@ -29,8 +29,11 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+### VS Code workspace settings & user state ###
 .vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
 
 ### Logs ###
 *.log
@@ -41,6 +44,7 @@ Thumbs.db
 
 ### Environment / secrets ###
 .env
+*.env
 application-local.properties
 
 ### Eclipse ###

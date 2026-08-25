@@ -45,7 +45,6 @@ public class SecurityConfig {
 
                 // Public endpoints
                 .requestMatchers(
-                        "/h2-console/**",
                         "/api/auth/register",
                         "/api/auth/login",
                         "/api/plans"
@@ -60,8 +59,7 @@ public class SecurityConfig {
                         "/api/customer/**",
                         "/api/user/**",
                         "/api/recharge",
-                        "/api/sim/**",
-                        "/api/user/subscriptions/**"
+                        "/api/sim/**"
                 ).hasRole("CUSTOMER")
 
                 // Everything else requires authentication
@@ -86,10 +84,6 @@ public class SecurityConfig {
                         );
                     }
                 )
-            )
-            
-            .headers(headers -> headers
-                    .frameOptions(frame -> frame.sameOrigin())
             );
 
         return http.build();
