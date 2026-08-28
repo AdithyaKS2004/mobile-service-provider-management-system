@@ -66,6 +66,8 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
             )
+            
+            .cors(cors -> {})
 
             .csrf(csrf -> csrf.disable())
 

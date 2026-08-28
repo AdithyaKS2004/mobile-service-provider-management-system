@@ -27,6 +27,14 @@ public class PlanService {
                 .toList();
     }
 
+    public List<PlanResponse> getAllPlans() {
+
+        return planRepository.findAll()
+                .stream()
+                .map(this::toResponse)
+                .toList();
+    }
+
     public PlanResponse createPlan(CreatePlanRequest request) {
 
         Plan plan = new Plan();

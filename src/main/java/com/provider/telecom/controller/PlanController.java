@@ -28,6 +28,14 @@ public class PlanController {
         );
     }
 
+    @GetMapping("/admin/plans")
+    public ResponseEntity<List<PlanResponse>> getAllPlans() {
+
+        return ResponseEntity.ok(
+            planService.getAllPlans()
+        );
+    }
+
     @PostMapping("/admin/plans")
     public ResponseEntity<PlanResponse> createPlan(
             @Valid @RequestBody CreatePlanRequest request) {
