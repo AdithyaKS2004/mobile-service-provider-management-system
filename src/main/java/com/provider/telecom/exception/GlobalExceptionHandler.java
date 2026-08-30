@@ -1,7 +1,6 @@
 package com.provider.telecom.exception;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.provider.telecom.dto.ApiErrorResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,71 +12,88 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceAlreadyExistsException.class)
-    public ResponseEntity<Map<String, String>> handleAlreadyExists(
+    public ResponseEntity<ApiErrorResponse> handleAlreadyExists(
             ResourceAlreadyExistsException exception) {
 
-        Map<String, String> response = new HashMap<>();
-
-        response.put("error", exception.getMessage());
+        ApiErrorResponse response =
+                new ApiErrorResponse(
+                        HttpStatus.CONFLICT.value(),
+                        exception.getMessage()
+                );
 
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(response);
     }
 
+
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNotFound(
+    public ResponseEntity<ApiErrorResponse> handleNotFound(
             ResourceNotFoundException exception) {
 
-        Map<String, String> response = new HashMap<>();
-
-        response.put("error", exception.getMessage());
+        ApiErrorResponse response =
+                new ApiErrorResponse(
+                        HttpStatus.NOT_FOUND.value(),
+                        exception.getMessage()
+                );
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
 
+
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<Map<String, String>> handleBusinessException(
+    public ResponseEntity<ApiErrorResponse> handleBusinessException(
             BusinessException exception) {
 
-        Map<String, String> response = new HashMap<>();
-
-        response.put("error", exception.getMessage());
+        ApiErrorResponse response =
+                new ApiErrorResponse(
+                        HttpStatus.BAD_REQUEST.value(),
+                        exception.getMessage()
+                );
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(response);
     }
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidation(
+    public ResponseEntity<ApiErrorResponse> handleValidation(
             MethodArgumentNotValidException exception) {
 
-        Map<String, String> errors = new HashMap<>();
-
-        exception.getBindingResult()
+        String message = exception.getBindingResult()
                 .getFieldErrors()
-                .forEach(error ->
-                        errors.put(
-                                error.getField(),
-                                error.getDefaultMessage()
-                        )
+                .stream()
+                .map(error ->
+                        error.getField() + ": " +
+                        error.getDefaultMessage()
+                )
+                .findFirst()
+                .orElse("Invalid request");
+
+        ApiErrorResponse response =
+                new ApiErrorResponse(
+                        HttpStatus.BAD_REQUEST.value(),
+                        message
                 );
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(errors);
+                .body(response);
     }
 
+
     @ExceptionHandler(ResourceAccessDeniedException.class)
-    public ResponseEntity<Map<String, String>> handleAccessDenied(
+    public ResponseEntity<ApiErrorResponse> handleAccessDenied(
             ResourceAccessDeniedException exception) {
 
-        Map<String, String> response = new HashMap<>();
-
-        response.put("error", exception.getMessage());
+        ApiErrorResponse response =
+                new ApiErrorResponse(
+                        HttpStatus.FORBIDDEN.value(),
+                        exception.getMessage()
+                );
 
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)

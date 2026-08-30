@@ -11,6 +11,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
 
+import com.provider.telecom.security.RestAccessDeniedHandler;
+import com.provider.telecom.security.RestAuthenticationEntryPoint;
+
 import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
@@ -67,6 +70,15 @@ public class SecurityConfig {
                 .authenticated()
             )
             
+            .exceptionHandling(exception -> exception
+                .authenticationEntryPoint(
+                        new RestAuthenticationEntryPoint()
+                )
+                .accessDeniedHandler(
+                        new RestAccessDeniedHandler()
+                )
+            )
+
             .cors(cors -> {})
 
             .csrf(csrf -> csrf.disable())
