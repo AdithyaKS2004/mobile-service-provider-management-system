@@ -46,8 +46,12 @@ Thumbs.db
 .env
 *.env
 application-local.properties
+application-prod.properties
 
 ### Eclipse ###
 .classpath
 .project
 .settings/
+
+# Frontend dependencies
+node_modules/

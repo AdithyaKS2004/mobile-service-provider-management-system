@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard - Telecom</title>
+
+    <link rel="stylesheet" href="../css/output.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+
+        <div class="max-w-7xl mx-auto px-6 py-4
+                    flex justify-between items-center">
+
+            <div>
+                <h1 class="text-xl font-bold text-gray-800">
+                    Telecom
+                </h1>
+
+                <p class="text-xs text-gray-500">
+                    Customer Portal
+                </p>
+            </div>
+
+            <button
+                id="logoutButton"
+                class="text-red-600 font-medium hover:text-red-800">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- Welcome -->
+        <div class="mb-8">
+
+            <h2
+                id="welcomeMessage"
+                class="text-3xl font-bold text-gray-800">
+
+                Welcome
+
+            </h2>
+
+            <p class="text-gray-500 mt-2">
+                Manage your SIMs, plans, subscriptions and usage.
+            </p>
+
+        </div>
+
+
+        <!-- Dashboard Summary -->
+        <div
+            id="dashboardMessage"
+            class="hidden mb-6 p-4 rounded-lg">
+        </div>
+
+
+        <div
+            class="grid grid-cols-1
+                   sm:grid-cols-2
+                   lg:grid-cols-4
+                   gap-6">
+
+
+            <!-- Active SIMs -->
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Active SIMs
+                        </p>
+
+                        <p
+                            id="activeSimCount"
+                            class="text-3xl font-bold
+                                   text-gray-800 mt-2">
+
+                            -
+
+                        </p>
+
+                    </div>
+
+                    <div class="text-3xl">
+                        📱
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Pending SIMs -->
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Pending SIMs
+                        </p>
+
+                        <p
+                            id="pendingSimCount"
+                            class="text-3xl font-bold
+                                   text-gray-800 mt-2">
+
+                            -
+
+                        </p>
+
+                    </div>
+
+                    <div class="text-3xl">
+                        ⏳
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Active Subscription -->
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Active Subscription
+                        </p>
+
+                        <p
+                            id="subscriptionCount"
+                            class="text-3xl font-bold
+                                   text-gray-800 mt-2">
+
+                            -
+
+                        </p>
+
+                    </div>
+
+                    <div class="text-3xl">
+                        🔄
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Available Plans -->
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Available Plans
+                        </p>
+
+                        <p
+                            id="planCount"
+                            class="text-3xl font-bold
+                                   text-gray-800 mt-2">
+
+                            -
+
+                        </p>
+
+                    </div>
+
+                    <div class="text-3xl">
+                        📋
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Current Subscription -->
+
+        <section class="mt-8">
+
+            <div class="flex justify-between items-center mb-4">
+
+                <div>
+
+                    <h3 class="text-xl font-semibold text-gray-800">
+                        Current Subscription
+                    </h3>
+
+                    <p class="text-sm text-gray-500 mt-1">
+                        Your currently active plan.
+                    </p>
+
+                </div>
+
+                <a
+                    href="subscriptions.html"
+                    class="text-blue-600 font-medium
+                           hover:underline">
+
+                    View Details →
+
+                </a>
+
+            </div>
+
+
+            <div
+                id="currentSubscription"
+                class="bg-white rounded-xl shadow p-6">
+
+                <p class="text-gray-500">
+                    Loading subscription...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Navigation Cards -->
+
+        <section class="mt-8">
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                Quick Actions
+            </h3>
+
+
+            <div
+                class="grid grid-cols-1
+                       md:grid-cols-2
+                       lg:grid-cols-4
+                       gap-6">
+
+
+                <!-- SIM -->
+
+                <a
+                    href="sims.html"
+                    class="bg-white p-6 rounded-xl shadow
+                           hover:shadow-lg transition">
+
+                    <div class="text-3xl mb-4">
+                        📱
+                    </div>
+
+                    <h3 class="text-lg font-semibold">
+                        My SIM
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        View and manage your SIM cards.
+                    </p>
+
+                </a>
+
+
+
+                <!-- Plans -->
+
+                <a
+                    href="plans.html"
+                    class="bg-white p-6 rounded-xl shadow
+                           hover:shadow-lg transition">
+
+                    <div class="text-3xl mb-4">
+                        📋
+                    </div>
+
+                    <h3 class="text-lg font-semibold">
+                        Plans
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        Browse available recharge plans.
+                    </p>
+
+                </a>
+
+
+
+                <!-- Subscription -->
+
+                <a
+                    href="subscriptions.html"
+                    class="bg-white p-6 rounded-xl shadow
+                           hover:shadow-lg transition">
+
+                    <div class="text-3xl mb-4">
+                        🔄
+                    </div>
+
+                    <h3 class="text-lg font-semibold">
+                        Subscriptions
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        View your active subscriptions.
+                    </p>
+
+                </a>
+
+
+
+                <!-- Usage -->
+
+                <a
+                    href="usage.html"
+                    class="bg-white p-6 rounded-xl shadow
+                           hover:shadow-lg transition">
+
+                    <div class="text-3xl mb-4">
+                        📊
+                    </div>
+
+                    <h3 class="text-lg font-semibold">
+                        Usage
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        Monitor your data and talktime usage.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Account Information -->
+
+        <section class="mt-8">
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <h3 class="text-xl font-semibold mb-4">
+                    Account Information
+                </h3>
+
+                <div
+                    id="userInfo"
+                    class="text-gray-600">
+
+                    Loading...
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/customer.js"></script>
+
+</body>
+
+</html>

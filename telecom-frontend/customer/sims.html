@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My SIMs - Telecom</title>
+
+    <link rel="stylesheet" href="../css/output.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+<nav class="bg-white shadow-sm">
+
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+        <div>
+            <h1 class="text-xl font-bold text-gray-800">
+                Telecom
+            </h1>
+
+            <p class="text-xs text-gray-500">
+                SIM Management
+            </p>
+        </div>
+
+        <div class="flex gap-4 items-center">
+
+            <a
+                href="dashboard.html"
+                class="text-blue-600 hover:underline">
+                Dashboard
+            </a>
+
+            <button
+                id="logoutButton"
+                class="text-red-600 font-medium">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+    <h2 class="text-3xl font-bold text-gray-800">
+        My SIMs
+    </h2>
+
+    <p class="text-gray-500 mt-2">
+        View your SIM cards or activate a new SIM.
+    </p>
+
+
+    <!-- Message -->
+    <div
+        id="message"
+        class="hidden mt-6 p-4 rounded-lg">
+    </div>
+
+
+    <!-- My SIMs -->
+
+    <section class="mt-8">
+
+        <h3 class="text-xl font-semibold mb-4">
+            My SIM Cards
+        </h3>
+
+        <div
+            id="mySims"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <p class="text-gray-500">
+                Loading...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Available SIMs -->
+
+    <section class="mt-12">
+
+        <h3 class="text-xl font-semibold mb-4">
+            Available SIM Cards
+        </h3>
+
+        <div
+            id="availableSims"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <p class="text-gray-500">
+                Loading...
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="../js/api.js"></script>
+<script src="../js/sims.js"></script>
+
+</body>
+
+</html>

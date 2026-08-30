@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Usage - Telecom</title>
+
+    <link rel="stylesheet" href="../css/output.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Navigation -->
+
+    <nav class="bg-white shadow-sm">
+
+        <div
+            class="max-w-7xl mx-auto px-6 py-4
+                   flex justify-between items-center">
+
+            <div>
+
+                <h1 class="text-xl font-bold text-gray-800">
+                    Telecom
+                </h1>
+
+                <p class="text-xs text-gray-500">
+                    Usage
+                </p>
+
+            </div>
+
+
+            <div class="flex gap-4 items-center">
+
+                <a
+                    href="dashboard.html"
+                    class="text-blue-600 hover:underline">
+
+                    Dashboard
+
+                </a>
+
+
+                <a
+                    href="subscriptions.html"
+                    class="text-blue-600 hover:underline">
+
+                    Subscriptions
+
+                </a>
+
+
+                <button
+                    id="logoutButton"
+                    class="text-red-600 font-medium
+                           hover:text-red-800">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main -->
+
+    <main class="max-w-4xl mx-auto px-6 py-8">
+
+        <div class="mb-8">
+
+            <h2 class="text-3xl font-bold text-gray-800">
+                Usage
+            </h2>
+
+            <p class="text-gray-500 mt-2">
+                Simulate data or talktime usage on your active SIM.
+            </p>
+
+        </div>
+
+
+        <!-- Message -->
+
+        <div
+            id="message"
+            class="hidden mb-6 p-4 rounded-lg">
+        </div>
+
+
+        <!-- Usage Form -->
+
+        <div
+            class="bg-white rounded-xl shadow p-6">
+
+            <h3 class="text-xl font-semibold mb-6">
+                Simulate Usage
+            </h3>
+
+
+            <!-- SIM -->
+
+            <div class="mb-5">
+
+                <label
+                    for="simCard"
+                    class="block text-sm font-medium
+                           text-gray-700 mb-2">
+
+                    Active SIM
+
+                </label>
+
+
+                <select
+                    id="simCard"
+                    class="w-full border border-gray-300
+                           rounded-lg px-4 py-3
+                           focus:outline-none
+                           focus:ring-2 focus:ring-blue-500">
+
+                    <option value="">
+                        Loading SIMs...
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Usage Type -->
+
+            <div class="mb-5">
+
+                <label
+                    for="usageType"
+                    class="block text-sm font-medium
+                           text-gray-700 mb-2">
+
+                    Usage Type
+
+                </label>
+
+
+                <select
+                    id="usageType"
+                    class="w-full border border-gray-300
+                           rounded-lg px-4 py-3
+                           focus:outline-none
+                           focus:ring-2 focus:ring-blue-500">
+
+                    <option value="DATA">
+                        Data
+                    </option>
+
+                    <option value="CALL">
+                        Call
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Amount -->
+
+            <div class="mb-6">
+
+                <label
+                    for="amount"
+                    class="block text-sm font-medium
+                           text-gray-700 mb-2">
+
+                    Amount
+
+                </label>
+
+
+                <input
+                    id="amount"
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    class="w-full border border-gray-300
+                           rounded-lg px-4 py-3
+                           focus:outline-none
+                           focus:ring-2 focus:ring-blue-500">
+
+                <p
+                    id="amountHint"
+                    class="text-xs text-gray-500 mt-2">
+
+                    Data amount is measured in MB.
+
+                </p>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                id="simulateButton"
+                class="w-full bg-blue-600 text-white
+                       py-3 rounded-lg font-semibold
+                       hover:bg-blue-700
+                       transition">
+
+                Simulate Usage
+
+            </button>
+
+        </div>
+
+
+        <!-- Result -->
+
+        <div
+            id="resultCard"
+            class="hidden mt-8 bg-white
+                   rounded-xl shadow p-6">
+
+            <h3 class="text-xl font-semibold mb-6">
+                Usage Result
+            </h3>
+
+
+            <div
+                class="grid grid-cols-1
+                       md:grid-cols-3 gap-6">
+
+
+                <!-- Used -->
+
+                <div>
+
+                    <p class="text-sm text-gray-500">
+                        Used
+                    </p>
+
+                    <p
+                        id="usedAmount"
+                        class="text-2xl font-bold
+                               text-gray-800 mt-2">
+
+                        -
+
+                    </p>
+
+                </div>
+
+
+                <!-- Remaining Data -->
+
+                <div>
+
+                    <p class="text-sm text-gray-500">
+                        Remaining Data
+                    </p>
+
+                    <p
+                        id="remainingData"
+                        class="text-2xl font-bold
+                               text-gray-800 mt-2">
+
+                        -
+
+                    </p>
+
+                </div>
+
+
+                <!-- Remaining Talktime -->
+
+                <div>
+
+                    <p class="text-sm text-gray-500">
+                        Remaining Talktime
+                    </p>
+
+                    <p
+                        id="remainingTalktime"
+                        class="text-2xl font-bold
+                               text-gray-800 mt-2">
+
+                        -
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/usage.js"></script>
+
+</body>
+
+</html>

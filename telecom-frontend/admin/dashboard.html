@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Telecom</title>
+
+    <link rel="stylesheet" href="../css/output.css">
+
+</head>
+
+
+<body class="bg-gray-100 min-h-screen">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="bg-white border-b border-gray-200">
+
+        <div
+            class="max-w-7xl mx-auto px-6 py-4
+                   flex justify-between items-center">
+
+            <!-- Brand -->
+
+            <div class="flex items-center gap-3">
+
+                <div
+                    class="w-10 h-10 rounded-lg
+                           bg-blue-600
+                           flex items-center justify-center
+                           text-white text-xl">
+
+                    📡
+
+                </div>
+
+
+                <div>
+
+                    <h1
+                        class="text-xl font-bold
+                               text-gray-800">
+
+                        Telecom
+
+                    </h1>
+
+                    <p
+                        class="text-xs text-gray-500">
+
+                        Administration Portal
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Admin -->
+
+            <div class="flex items-center gap-5">
+
+                <div class="text-right">
+
+                    <p
+                        id="adminName"
+                        class="text-sm font-semibold
+                               text-gray-800">
+
+                        Administrator
+
+                    </p>
+
+                    <p
+                        class="text-xs text-gray-500">
+
+                        ADMIN
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="w-10 h-10 rounded-full
+                           bg-gray-200
+                           flex items-center justify-center
+                           text-gray-600 font-semibold">
+
+                    A
+
+                </div>
+
+
+                <button
+                    id="logoutButton"
+                    class="px-4 py-2
+                           text-sm font-medium
+                           text-red-600
+                           border border-red-200
+                           rounded-lg
+                           hover:bg-red-50
+                           transition">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main
+        class="max-w-7xl mx-auto
+               px-6 py-8">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <section
+            class="mb-8">
+
+            <div>
+
+                <p
+                    class="text-sm font-medium
+                           text-blue-600 mb-1">
+
+                    ADMINISTRATION
+
+                </p>
+
+
+                <h2
+                    class="text-3xl font-bold
+                           text-gray-800">
+
+                    Admin Dashboard
+
+                </h2>
+
+
+                <p
+                    class="text-gray-500 mt-2">
+
+                    Manage SIM cards, activation requests
+                    and prepaid plans.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MESSAGE ================= -->
+
+        <div
+            id="message"
+            class="hidden mb-6
+                   p-4 rounded-lg">
+        </div>
+
+
+
+        <!-- ================= CORE MANAGEMENT ================= -->
+
+        <section>
+
+            <div class="mb-4">
+
+                <h3
+                    class="text-xl font-bold
+                           text-gray-800">
+
+                    Management
+
+                </h3>
+
+                <p
+                    class="text-sm text-gray-500 mt-1">
+
+                    Access the core telecom administration
+                    functions.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="grid grid-cols-1
+                       md:grid-cols-2
+                       xl:grid-cols-3
+                       gap-6">
+
+
+                <!-- SIM MANAGEMENT -->
+
+                <a
+                    href="sims.html"
+                    class="group bg-white
+                           rounded-2xl
+                           border border-gray-200
+                           p-6
+                           hover:border-blue-300
+                           hover:shadow-lg
+                           transition">
+
+
+                    <div
+                        class="flex items-center
+                               justify-between">
+
+
+                        <div
+                            class="w-12 h-12
+                                   rounded-xl
+                                   bg-blue-100
+                                   flex items-center
+                                   justify-center
+                                   text-2xl">
+
+                            📱
+
+                        </div>
+
+
+                        <span
+                            class="text-gray-300
+                                   group-hover:text-blue-500
+                                   transition">
+
+                            →
+
+                        </span>
+
+                    </div>
+
+
+                    <h4
+                        class="mt-5
+                               text-lg font-bold
+                               text-gray-800
+                               group-hover:text-blue-600
+                               transition">
+
+                        SIM Management
+
+                    </h4>
+
+
+                    <p
+                        class="text-sm
+                               text-gray-500
+                               mt-2
+                               leading-relaxed">
+
+                        Create and manage SIM cards,
+                        assign them to customers and
+                        handle activation requests.
+
+                    </p>
+
+
+                    <div
+                        class="mt-5
+                               text-sm
+                               font-semibold
+                               text-blue-600">
+
+                        Manage SIMs →
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- PLANS -->
+
+                <a
+                    href="plans.html"
+                    class="group bg-white
+                           rounded-2xl
+                           border border-gray-200
+                           p-6
+                           hover:border-green-300
+                           hover:shadow-lg
+                           transition">
+
+
+                    <div
+                        class="flex items-center
+                               justify-between">
+
+
+                        <div
+                            class="w-12 h-12
+                                   rounded-xl
+                                   bg-green-100
+                                   flex items-center
+                                   justify-center
+                                   text-2xl">
+
+                            📋
+
+                        </div>
+
+
+                        <span
+                            class="text-gray-300
+                                   group-hover:text-green-500
+                                   transition">
+
+                            →
+
+                        </span>
+
+                    </div>
+
+
+                    <h4
+                        class="mt-5
+                               text-lg font-bold
+                               text-gray-800
+                               group-hover:text-green-600
+                               transition">
+
+                        Plan Management
+
+                    </h4>
+
+
+                    <p
+                        class="text-sm
+                               text-gray-500
+                               mt-2
+                               leading-relaxed">
+
+                        Create prepaid recharge plans
+                        and control their availability
+                        for customers.
+
+                    </p>
+
+
+                    <div
+                        class="mt-5
+                               text-sm
+                               font-semibold
+                               text-green-600">
+
+                        Manage Plans →
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- CUSTOMERS -->
+
+                <a
+                    href="customers.html"
+                    class="group bg-white
+                           rounded-2xl
+                           border border-gray-200
+                           p-6
+                           hover:border-purple-300
+                           hover:shadow-lg
+                           transition">
+
+
+                    <div
+                        class="flex items-center
+                               justify-between">
+
+
+                        <div
+                            class="w-12 h-12
+                                   rounded-xl
+                                   bg-purple-100
+                                   flex items-center
+                                   justify-center
+                                   text-2xl">
+
+                            👥
+
+                        </div>
+
+
+                        <span
+                            class="text-gray-300
+                                   group-hover:text-purple-500
+                                   transition">
+
+                            →
+
+                        </span>
+
+                    </div>
+
+
+                    <h4
+                        class="mt-5
+                               text-lg font-bold
+                               text-gray-800
+                               group-hover:text-purple-600
+                               transition">
+
+                        Customers
+
+                    </h4>
+
+
+                    <p
+                        class="text-sm
+                               text-gray-500
+                               mt-2
+                               leading-relaxed">
+
+                        View registered customer
+                        accounts and their
+                        telecom information.
+
+                    </p>
+
+
+                    <div
+                        class="mt-5
+                               text-sm
+                               font-semibold
+                               text-purple-600">
+
+                        View Customers →
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <section class="mt-10">
+
+
+            <div class="mb-4">
+
+                <h3
+                    class="text-xl font-bold
+                           text-gray-800">
+
+                    Quick Actions
+
+                </h3>
+
+                <p
+                    class="text-sm text-gray-500 mt-1">
+
+                    Frequently used administration
+                    operations.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="bg-white
+                       border border-gray-200
+                       rounded-2xl
+                       p-6">
+
+
+                <div
+                    class="grid grid-cols-1
+                           md:grid-cols-2
+                           gap-4">
+
+
+                    <!-- CREATE SIM -->
+
+                    <a
+                        href="sims.html"
+                        class="flex items-center gap-4
+                               p-4
+                               rounded-xl
+                               border border-gray-200
+                               hover:bg-blue-50
+                               hover:border-blue-200
+                               transition">
+
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-lg
+                                   bg-blue-100
+                                   flex items-center
+                                   justify-center">
+
+                            ➕
+
+                        </div>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold
+                                       text-gray-800">
+
+                                Create New SIM
+
+                            </p>
+
+                            <p
+                                class="text-xs
+                                       text-gray-500 mt-1">
+
+                                Add a SIM to the inventory.
+
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- PENDING ACTIVATIONS -->
+
+                    <a
+                        href="sims.html"
+                        class="flex items-center gap-4
+                               p-4
+                               rounded-xl
+                               border border-gray-200
+                               hover:bg-yellow-50
+                               hover:border-yellow-200
+                               transition">
+
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-lg
+                                   bg-yellow-100
+                                   flex items-center
+                                   justify-center">
+
+                            ⏳
+
+                        </div>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold
+                                       text-gray-800">
+
+                                Pending Activations
+
+                            </p>
+
+                            <p
+                                class="text-xs
+                                       text-gray-500 mt-1">
+
+                                Review customer SIM requests.
+
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- CREATE PLAN -->
+
+                    <a
+                        href="plans.html"
+                        class="flex items-center gap-4
+                               p-4
+                               rounded-xl
+                               border border-gray-200
+                               hover:bg-green-50
+                               hover:border-green-200
+                               transition">
+
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-lg
+                                   bg-green-100
+                                   flex items-center
+                                   justify-center">
+
+                            +
+
+                        </div>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold
+                                       text-gray-800">
+
+                                Create New Plan
+
+                            </p>
+
+                            <p
+                                class="text-xs
+                                       text-gray-500 mt-1">
+
+                                Add a prepaid recharge plan.
+
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- MANAGE PLANS -->
+
+                    <a
+                        href="plans.html"
+                        class="flex items-center gap-4
+                               p-4
+                               rounded-xl
+                               border border-gray-200
+                               hover:bg-gray-50
+                               hover:border-gray-300
+                               transition">
+
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-lg
+                                   bg-gray-100
+                                   flex items-center
+                                   justify-center">
+
+                            ⚙
+
+                        </div>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold
+                                       text-gray-800">
+
+                                Manage Plans
+
+                            </p>
+
+                            <p
+                                class="text-xs
+                                       text-gray-500 mt-1">
+
+                                Activate or deactivate plans.
+
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ADMIN ACCESS ================= -->
+
+        <section class="mt-10">
+
+
+            <div
+                class="bg-gradient-to-r
+                       from-blue-600
+                       to-blue-700
+                       rounded-2xl
+                       p-6
+                       text-white
+                       flex flex-col
+                       md:flex-row
+                       md:items-center
+                       md:justify-between
+                       gap-5">
+
+
+                <div>
+
+                    <p
+                        class="text-blue-100
+                               text-sm
+                               font-medium">
+
+                        ADMINISTRATOR ACCESS
+
+                    </p>
+
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mt-1">
+
+                        Telecom Service Management
+
+                    </h3>
+
+
+                    <p
+                        class="text-blue-100
+                               text-sm
+                               mt-2">
+
+                        You are signed in with
+                        administrator privileges.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="px-4 py-2
+                           bg-white/10
+                           border border-white/20
+                           rounded-lg
+                           text-sm
+                           font-medium">
+
+                    🔒 Secure Admin Session
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer
+            class="mt-12 pt-6
+                   border-t border-gray-200
+                   text-center
+                   text-sm text-gray-400">
+
+            Telecom Service Provider
+            · Administration Portal
+
+        </footer>
+
+
+    </main>
+
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+
+</body>
+
+</html>
