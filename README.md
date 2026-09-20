@@ -1,356 +1,450 @@
-📱 Mobile Service Provider Management System
+# 📱 Mobile Service Provider Management System
 
-A full-stack telecom management application built with Java, Spring Boot, Spring Security, JPA/Hibernate, MySQL, Vanilla JavaScript, and Tailwind CSS.
+A full-stack web application for managing mobile service provider operations, including customers, SIM cards, mobile plans, subscriptions, recharge, usage tracking, and secure customer authentication.
 
-The system provides separate Admin and Customer workflows for managing SIM cards, mobile plans, subscriptions, recharge, and usage while enforcing secure authentication and email verification.
+---
 
-✨ Features
+## 🚀 Overview
 
-🔐 Authentication & Security
+The **Mobile Service Provider Management System** provides separate workflows for administrators and customers.
 
-Admin and Customer role-based access control
+### 👨‍💼 Admin
+- Manage customers
+- Manage SIM cards
+- Create and manage mobile plans
+- View and manage provider-side operations
 
-Session-based authentication using Spring Security
+### 👤 Customer
+- Register and verify account through email OTP
+- Login securely
+- View available mobile plans
+- Activate available SIM cards
+- Subscribe to plans
+- Recharge plans
+- Simulate and track usage
+- View personal subscriptions
 
-Secure password storage with BCrypt
+---
 
-Strong password validation during registration
+## ✨ Features
 
-Unique email and mobile number validation
+### 🔐 Authentication & Security
 
-Email OTP verification for new customer accounts
+- Role-based access control using **Spring Security**
+- Session-based authentication
+- Secure password hashing using **BCrypt**
+- Strong password validation
+- Unique email and mobile number validation
+- Email OTP-based account verification
+- OTP expiry and attempt-limit protection
+- Secure ownership checks for customer resources
+- Centralized exception handling
+- Environment-based configuration for sensitive credentials
 
-OTP expiry, attempt limits, single-use codes, and hashed OTP storage
+### 📶 SIM Management
 
-Secure environment-based configuration for database and email credentials
+- View available SIM cards
+- Activate a SIM for a customer
+- View the customer's active SIM cards
+- Validate SIM ownership before customer operations
 
-Centralized exception handling and validation responses
+### 📋 Mobile Plans
 
-👤 Customer Management
+- Create and manage mobile plans
+- View active plans
+- Display plan details and benefits
+- Customer access to available plans
 
-Customer registration and login
+### 💳 Subscription & Recharge
 
-Email verification before account activation
+- Subscribe to mobile plans
+- Track active subscriptions
+- Recharge customer plans
+- Maintain subscription validity and remaining benefits
 
-Customer dashboard
+### 📊 Usage Management
 
-View and manage assigned SIM cards
+- Simulate mobile usage
+- Track remaining data
+- Track remaining talk-time
+- Validate available balance before usage
+- Prevent unauthorized usage on another customer's SIM
 
-Activate available SIM cards
+### 📧 Email Verification
 
-View mobile plans
+- Generate a six-digit verification OTP
+- Send OTP through SMTP email
+- Store OTP securely as a hash
+- OTP expiry support
+- Maximum verification attempts
+- Single-use verification codes
+- Enable customer account after successful email verification
 
-Subscribe to plans
+---
 
-Recharge services
+## 🏗️ Architecture
 
-Simulate usage and update remaining data/call balance
+The backend follows a layered architecture:
 
-🛠️ Admin Management
+```text
+                    ┌─────────────────────┐
+                    │      Frontend       │
+                    │ HTML / JS / Tailwind│
+                    └──────────┬──────────┘
+                               │
+                               │ REST API
+                               ▼
+                    ┌─────────────────────┐
+                    │    Controllers      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      Services       │
+                    │ Business Logic      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Repositories      │
+                    │ Spring Data JPA     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │       MySQL         │
+                    └─────────────────────┘
 
-Admin authentication
+## 🛠️ Tech Stack
 
-Admin dashboard
+### Backend
+- **Java 21**[cite: 1]
+- **Spring Boot 4.1.0**[cite: 1]
+- Spring MVC / REST[cite: 1]
+- Spring Security[cite: 1]
+- Spring Data JPA[cite: 1]
+- Hibernate[cite: 1]
+- Maven[cite: 1]
 
-Manage customers
+### Database
+- **MySQL**[cite: 1]
+- H2 for testing[cite: 1]
 
-Manage SIM cards
+### Frontend
+- HTML5[cite: 1]
+- Vanilla JavaScript[cite: 1]
+- Tailwind CSS[cite: 1]
+- Fetch API[cite: 1]
 
-Manage mobile plans
+### Tools
+- IntelliJ IDEA[cite: 1]
+- Visual Studio Code[cite: 1]
+- MySQL Workbench[cite: 1]
+- Git[cite: 1]
+- GitHub[cite: 1]
 
-View and manage telecom service data
+---
 
-🔄 Application Flow
+## 📁 Project Structure
 
-                    ┌──────────────┐
-                    │    User      │
-                    └──────┬───────┘
-                           │
-                 ┌─────────▼─────────┐
-                 │ Register / Login  │
-                 └─────────┬─────────┘
-                           │
-                  New Customer?
-                       ┌───┴───┐
-                      Yes     No
-                       │       │
-               ┌──────▼───┐   │
-               │ Email OTP│   │
-               │ Verify   │   │
-               └──────┬───┘   │
-                      │        │
-                      ▼        ▼
-                Account Active
-                      │
-             ┌────────┴────────┐
-             │                 │
-        ┌────▼────┐       ┌────▼─────┐
-        │  Admin  │       │ Customer │
-        └────┬────┘       └────┬─────┘
-             │                 │
-      Admin Dashboard    Customer Dashboard
-             │                 │
-      ┌──────┼──────┐    ┌─────┼───────────────┐
-      │      │      │    │     │       │       │
-     SIM   Plans Customers SIM  Plans  Recharge Usage
-
-🏗️ Architecture
-
-The backend follows a layered Controller → Service → Repository architecture.
-
-flowchart LR
-    A[Frontend<br/>HTML + JavaScript + Tailwind] --> B[REST API]
-    B --> C[Spring Security]
-    C --> D[Controllers]
-    D --> E[Services]
-    E --> F[Spring Data JPA]
-    F --> G[(MySQL)]
-    E --> H[Email SMTP]
-
-🧰 Tech Stack
-
-Layer
-
-Technologies
-
-Language
-
-Java 21, JavaScript, SQL, HTML, CSS
-
-Backend
-
-Spring Boot 4.1.0, Spring MVC, Spring Security
-
-Persistence
-
-Spring Data JPA, Hibernate
-
-Database
-
-MySQL
-
-Frontend
-
-Vanilla JavaScript, HTML5, Tailwind CSS
-
-Authentication
-
-Spring Security, HTTP Session, BCrypt
-
-Email
-
-Spring Boot Mail + SMTP
-
-Build
-
-Maven
-
-Version Control
-
-Git, GitHub
-
-Testing Support
-
-H2, Spring Boot Test Starters
-
-📁 Project Structure
-
+```text
 Mobile-Service-Provider/
 │
 ├── .vscode/
 │   └── launch.json
 │
-├── telecom/                  # Spring Boot backend
+├── telecom/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/provider/telecom/
-│   │   │   │   ├── config/
-│   │   │   │   ├── controller/
-│   │   │   │   ├── dto/
-│   │   │   │   ├── entity/
-│   │   │   │   ├── enums/
-│   │   │   │   ├── exception/
-│   │   │   │   ├── repository/
-│   │   │   │   ├── security/
-│   │   │   │   └── service/
+│   │   │   ├── java/
+│   │   │   │   └── com/provider/telecom/
+│   │   │   │       ├── config/
+│   │   │   │       ├── controller/
+│   │   │   │       ├── dto/
+│   │   │   │       ├── entity/
+│   │   │   │       ├── enums/
+│   │   │   │       ├── exception/
+│   │   │   │       ├── repository/
+│   │   │   │       ├── security/
+│   │   │   │       └── service/
+│   │   │   │
 │   │   │   └── resources/
+│   │   │
 │   │   └── test/
-│   └── pom.xml
+│   │
+│   ├── pom.xml
+│   └── mvnw.cmd
 │
-├── telecom-frontend/         # Frontend
-│   ├── admin/
-│   ├── customer/
+├── telecom-frontend/
 │   ├── css/
 │   ├── js/
+│   ├── admin/
+│   ├── customer/
 │   ├── index.html
 │   ├── register.html
 │   └── verify-email.html
 │
 └── README.md
+```[cite: 1]
 
-🔒 Security Highlights
+---
 
-Passwords are stored using BCrypt hashing, not plaintext.
+## 🔑 Authentication Flow
 
-Customer registration always creates a CUSTOMER role through the public registration endpoint.
+```text
+┌───────────────┐
+│   Register    │
+└───────┬───────┘
+        │
+        ▼
+┌──────────────────────┐
+│ Validate user input  │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Save customer        │
+│ account              │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Generate Email OTP   │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Verify Email OTP     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Enable Account       │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│       Login          │
+└──────────────────────┘
+```[cite: 1]
 
-New customer accounts remain disabled until email verification is completed.
+---
 
-Verification codes are stored as hashes rather than plaintext.
+## 🔒 Security Highlights
 
-Verification codes expire after a limited period and support a maximum number of failed attempts.
+| Security Feature | Implementation |
+|---|---|
+| Password protection | BCrypt |
+| Authentication | Spring Security + HTTP Session |
+| Authorization | Role-based access |
+| Email verification | OTP |
+| OTP storage | Hashed |
+| OTP expiry | 10 minutes |
+| OTP attempts | Maximum 5 |
+| Email uniqueness | Database constraint |
+| Phone uniqueness | Database constraint |
+| Resource ownership | Service-layer validation |
+| Sensitive configuration | Environment variables |[cite: 1]
 
-Previous active verification codes are invalidated when a new code is requested.
+---
 
-Database and email credentials are supplied through environment variables rather than hard-coded application configuration.
+## 🌐 Main API Endpoints
 
-📧 Email Verification
+### Authentication
 
-Customer registration follows this process:
-
-Register
-   ↓
-Validate details
-   ↓
-Create customer account
-   ↓
-Generate 6-digit OTP
-   ↓
-Hash OTP + store in database
-   ↓
-Send OTP by email
-   ↓
-Verify OTP
-   ↓
-Mark email as verified
-   ↓
-Enable account
-   ↓
-Login
-
-Verification codes include:
-
-6-digit OTP
-
-10-minute expiry
-
-Maximum 5 failed attempts
-
-Single-use validation
-
-Hashed storage
-
-Resend support
-
-🔌 Main API Endpoints
-
-Authentication
-
+```text
 POST /api/auth/register
 POST /api/auth/login
-POST /api/auth/verify-email
-POST /api/auth/resend-email-verification
 GET  /api/auth/me
 POST /api/auth/logout
 
-SIM Management
+POST /api/auth/verify-email
+POST /api/auth/resend-email-verification
+```[cite: 1]
 
+### SIM
+
+```text
 GET  /api/sim/available
 POST /api/sim/activate
 GET  /api/sim/my
-POST /api/sim/simulate-usage
+```[cite: 1]
 
-Plans & Services
+### Plans
 
-GET  /api/plans
+```text
+GET /api/plans
+```[cite: 1]
+
+### Recharge
+
+```text
 POST /api/recharge
+```[cite: 1]
 
-Additional customer and admin endpoints are implemented for the respective dashboard modules.
+### Usage
 
-⚙️ Configuration
+```text
+POST /api/sim/simulate-usage
+```[cite: 1]
 
-Sensitive configuration is supplied through environment variables.
+---
 
-Database
+## ⚙️ Setup & Installation
 
+### 1. Clone the repository
+
+```bash
+git clone [https://github.com/AdithyaKS2004/mobile-service-provider-management-system.git](https://github.com/AdithyaKS2004/mobile-service-provider-management-system.git)
+cd mobile-service-provider-management-system
+```[cite: 1]
+
+### 2. Configure MySQL
+
+Create the database:
+
+```sql
+CREATE DATABASE telecom;
+```[cite: 1]
+
+Configure the database credentials through environment variables:
+
+```text
 DB_URL
 DB_USERNAME
 DB_PASSWORD
+```[cite: 1]
 
-Email
+### 3. Configure Email
 
-MAIL_HOST
-MAIL_PORT
-MAIL_USERNAME
-MAIL_PASSWORD
+The application uses Gmail SMTP for email verification.[cite: 1]
 
-For Gmail SMTP, the application uses:
+```text
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=<your-gmail-address>
+MAIL_PASSWORD=<your-gmail-app-password>
+```[cite: 1]
 
-MAIL_HOST = smtp.gmail.com
-MAIL_PORT = 587
+Use a **Gmail App Password**, not your normal Gmail password.[cite: 1]
 
-The email account uses an App Password rather than the normal account password.
+### 4. Start the Spring Boot backend
 
-▶️ Running the Application
-
-Backend
-
-From the telecom directory:
-
-./mvnw spring-boot:run
-
-On Windows:
-
-mvnw.cmd spring-boot:run
+```bash
+cd telecom
+.\mvnw.cmd spring-boot:run
+```[cite: 1]
 
 The backend runs on:
 
+```text
 http://localhost:8080
+```[cite: 1]
 
-Frontend
+### 5. Start the frontend
 
-Open the frontend from the telecom-frontend directory using a local web server.
+Open the `telecom-frontend` folder using a local development server.[cite: 1]
 
-The frontend communicates with the backend through the configured API base URL and uses session credentials for authenticated requests.
+The frontend communicates with the backend through REST APIs.[cite: 1]
 
-✅ Current Project Scope
+---
 
-The implemented system currently covers:
+## 🧪 Application Flow
 
-Admin and Customer authentication
+### Customer Flow
 
-Customer registration
+```text
+Register
+   ↓
+Email Verification
+   ↓
+Login
+   ↓
+Customer Dashboard
+   ↓
+View Plans
+   ↓
+Activate SIM
+   ↓
+Subscribe
+   ↓
+Recharge
+   ↓
+Simulate Usage
+   ↓
+Track Remaining Benefits
+```[cite: 1]
 
-Strong password validation
+### Admin Flow
 
-Email OTP account verification
+```text
+Admin Login
+    ↓
+Admin Dashboard
+    ↓
+Manage Customers
+    ↓
+Manage SIM Cards
+    ↓
+Manage Mobile Plans
+```[cite: 1]
 
-SIM management
+---
 
-Mobile plan management
+## 🗄️ Core Domain Model
 
-Subscription management
+The main entities in the system are:
 
-Recharge functionality
+```text
+User
+ ├── Customer
+ ├── Admin
+ └── Authentication / Verification
 
-Usage simulation
+SimCard
+   │
+   └── User
 
-Role-based dashboards
+Plan
+   │
+   └── Subscription
 
-REST API integration
+Subscription
+   ├── SimCard
+   ├── Plan
+   ├── Remaining Data
+   ├── Remaining Talktime
+   └── Expiry
 
-MySQL persistence
+VerificationCode
+   └── User
+```[cite: 1]
 
-Centralized exception handling
+---
 
-Environment-based configuration
+## 📌 Project Highlights
 
-Tailwind CSS production build
+- Full-stack implementation using **Java + Spring Boot + JavaScript**[cite: 1]
+- RESTful backend architecture[cite: 1]
+- Database-driven application using JPA/Hibernate[cite: 1]
+- Secure session-based authentication[cite: 1]
+- Role-based authorization[cite: 1]
+- Email-based OTP verification[cite: 1]
+- Modular Controller–Service–Repository design[cite: 1]
+- Responsive frontend using Tailwind CSS[cite: 1]
+- Environment-based configuration for credentials[cite: 1]
 
-Git/GitHub version control
+---
 
-👨‍💻 Project
+## 👨‍💻 Author
 
-Mobile Service Provider Management System
+**Adithya KS**[cite: 1]
 
-Built as a full-stack software project using modern Java/Spring Boot backend development and a lightweight JavaScript frontend.
+GitHub:  
+https://github.com/AdithyaKS2004[cite: 1]
+
+---
+
+## 📜 License
+
+This project was developed as an academic/project implementation for learning and demonstration purposes.[cite: 1]
