@@ -115,9 +115,9 @@ The backend follows a layered architecture:
                     │       MySQL         │
                     └─────────────────────┘
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-### Backend
+## Backend
 - **Java 21**[cite: 1]
 - **Spring Boot 4.1.0**[cite: 1]
 - Spring MVC / REST[cite: 1]
