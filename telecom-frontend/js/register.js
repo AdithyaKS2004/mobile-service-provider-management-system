@@ -138,24 +138,22 @@ registerForm.addEventListener(
 
 
             showMessage(
-                "Account created successfully! Redirecting to login...",
+                response?.message ||
+                "Account created successfully! Please check your email for the verification code.",
                 "success"
             );
-
-
-            /*
-             * Registration does NOT
-             * automatically log the user in.
-             *
-             * Redirect to login page.
-             */
-
+            
+            sessionStorage.setItem(
+                "verificationEmail",
+                email
+            );
+            
             setTimeout(
                 function () {
-
+            
                     window.location.href =
-                        "index.html";
-
+                        "verify-email.html";
+            
                 },
                 1500
             );

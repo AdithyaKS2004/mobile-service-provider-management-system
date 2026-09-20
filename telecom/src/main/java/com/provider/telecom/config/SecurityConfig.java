@@ -50,7 +50,9 @@ public class SecurityConfig {
                 .requestMatchers(
                         "/api/auth/register",
                         "/api/auth/login",
-                        "/api/plans"
+                        "/api/plans",
+                        "/api/auth/verify-email",
+                        "/api/auth/resend-email-verification"
                 ).permitAll()
 
                 // Admin endpoints

@@ -14,21 +14,25 @@ import com.provider.telecom.enums.Role;
 import com.provider.telecom.exception.ResourceAlreadyExistsException;
 import com.provider.telecom.repository.UserRepository;
 
+
 @Service
 public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final VerificationCodeService verificationCodeService;
 
     public AuthService(
             UserRepository userRepository,
             PasswordEncoder passwordEncoder,
-            AuthenticationManager authenticationManager) {
+            AuthenticationManager authenticationManager,
+            VerificationCodeService verificationCodeService) {
 
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.verificationCodeService = verificationCodeService;
     }
 
     public User authenticateUser(LoginRequest request) {
@@ -84,15 +88,24 @@ public class AuthService {
 
         // Public registration can only create customers.
         user.setRole(Role.CUSTOMER);
+        
+        user.setEmailVerified(false);
+        user.setPhoneVerified(false);
+        user.setEnabled(false);
 
         User savedUser = userRepository.save(user);
+
+        verificationCodeService.sendEmailVerificationCode(
+                savedUser.getEmail()
+        );
 
         return new RegisterResponse(
                 savedUser.getId(),
                 savedUser.getFullName(),
                 savedUser.getEmail(),
                 savedUser.getPhone(),
-                savedUser.getRole()
+                savedUser.getRole(),
+                "Regristration successful. Please verify your email."
         );
     }
 }

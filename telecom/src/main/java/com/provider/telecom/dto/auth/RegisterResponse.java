@@ -9,6 +9,7 @@ public class RegisterResponse {
     private String email;
     private String phone;
     private Role role;
+    private String message;
 
     public RegisterResponse() {
     }
@@ -18,13 +19,15 @@ public class RegisterResponse {
             String fullName,
             String email,
             String phone,
-            Role role) {
+            Role role,
+            String message) {
 
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.role = role;
+        this.message = message;
     }
 
     public Long getId() {
@@ -45,5 +48,9 @@ public class RegisterResponse {
 
     public Role getRole() {
         return role;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

@@ -1,11 +1,12 @@
 package com.provider.telecom.service;
 
-import com.provider.telecom.entity.User;
-import com.provider.telecom.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.provider.telecom.entity.User;
+import com.provider.telecom.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -31,6 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .withUsername(user.getEmail())
                 .password(user.getPassword())
                 .roles(user.getRole().name())
+                .disabled(!user.isEnabled())
                 .build();
     }
 }

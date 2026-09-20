@@ -21,6 +21,9 @@ import com.provider.telecom.dto.auth.RegisterRequest;
 import com.provider.telecom.dto.auth.RegisterResponse;
 import com.provider.telecom.entity.User;
 import com.provider.telecom.service.AuthService;
+import com.provider.telecom.dto.auth.VerifyEmailRequest;
+import com.provider.telecom.dto.auth.ResendVerificationRequest;
+import com.provider.telecom.service.VerificationCodeService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,15 +36,18 @@ public class AuthController {
     private final AuthService authService;
     private final AuthenticationManager authenticationManager;
     private final SecurityContextRepository securityContextRepository;
+    private final VerificationCodeService verificationCodeService;
 
     public AuthController(
             AuthService authService,
             AuthenticationManager authenticationManager,
-            SecurityContextRepository securityContextRepository) {
+            SecurityContextRepository securityContextRepository,
+            VerificationCodeService verificationCodeService) {
 
         this.authService = authService;
         this.authenticationManager = authenticationManager;
         this.securityContextRepository = securityContextRepository;
+        this.verificationCodeService = verificationCodeService;
     }
 
     @PostMapping("/register")
@@ -56,6 +62,32 @@ public class AuthController {
                 .body(response);
     }
 
+    @PostMapping("/verify-email")
+    public ResponseEntity<String> verifyEmail(
+            @Valid @RequestBody VerifyEmailRequest request) {
+
+        verificationCodeService.verifyEmail(
+                request.getEmail(),
+                request.getCode()
+        );
+
+        return ResponseEntity.ok(
+                "Email verified successfully. Your account is now active."
+        );
+    }
+
+    @PostMapping("/resend-email-verification")
+    public ResponseEntity<String> resendEmailVerification(
+            @Valid @RequestBody ResendVerificationRequest request) {
+
+        verificationCodeService.sendEmailVerificationCode(
+                request.getEmail()
+        );
+
+        return ResponseEntity.ok(
+                "A new verification code has been sent to your email."
+        );
+    }
 
     @GetMapping("/me")
     public ResponseEntity<CurrentUserResponse> getCurrentUser(
