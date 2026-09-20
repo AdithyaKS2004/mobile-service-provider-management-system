@@ -86,7 +86,6 @@ The **Mobile Service Provider Management System** provides separate workflows fo
 
 The backend follows a layered architecture:
 
-```text
                     ┌─────────────────────┐
                     │      Frontend       │
                     │ HTML / JS / Tailwind│
@@ -115,9 +114,9 @@ The backend follows a layered architecture:
                     │       MySQL         │
                     └─────────────────────┘
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-## Backend
+### Backend
 - **Java 21**[cite: 1]
 - **Spring Boot 4.1.0**[cite: 1]
 - Spring MVC / REST[cite: 1]
@@ -147,7 +146,6 @@ The backend follows a layered architecture:
 
 ## 📁 Project Structure
 
-```text
 Mobile-Service-Provider/
 │
 ├── .vscode/
@@ -185,13 +183,11 @@ Mobile-Service-Provider/
 │   └── verify-email.html
 │
 └── README.md
-```[cite: 1]
 
 ---
 
 ## 🔑 Authentication Flow
 
-```text
 ┌───────────────┐
 │   Register    │
 └───────┬───────┘
@@ -226,7 +222,6 @@ Mobile-Service-Provider/
 ┌──────────────────────┐
 │       Login          │
 └──────────────────────┘
-```[cite: 1]
 
 ---
 
@@ -252,7 +247,6 @@ Mobile-Service-Provider/
 
 ### Authentication
 
-```text
 POST /api/auth/register
 POST /api/auth/login
 GET  /api/auth/me
@@ -260,33 +254,29 @@ POST /api/auth/logout
 
 POST /api/auth/verify-email
 POST /api/auth/resend-email-verification
-```[cite: 1]
+
 
 ### SIM
 
-```text
 GET  /api/sim/available
 POST /api/sim/activate
 GET  /api/sim/my
-```[cite: 1]
+
 
 ### Plans
 
-```text
 GET /api/plans
-```[cite: 1]
+
 
 ### Recharge
 
-```text
 POST /api/recharge
-```[cite: 1]
+
 
 ### Usage
 
-```text
 POST /api/sim/simulate-usage
-```[cite: 1]
+
 
 ---
 
@@ -294,58 +284,58 @@ POST /api/sim/simulate-usage
 
 ### 1. Clone the repository
 
-```bash
+
 git clone [https://github.com/AdithyaKS2004/mobile-service-provider-management-system.git](https://github.com/AdithyaKS2004/mobile-service-provider-management-system.git)
 cd mobile-service-provider-management-system
-```[cite: 1]
+
 
 ### 2. Configure MySQL
 
 Create the database:
 
-```sql
+
 CREATE DATABASE telecom;
-```[cite: 1]
+
 
 Configure the database credentials through environment variables:
 
-```text
+
 DB_URL
 DB_USERNAME
 DB_PASSWORD
-```[cite: 1]
+
 
 ### 3. Configure Email
 
 The application uses Gmail SMTP for email verification.[cite: 1]
 
-```text
+
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=<your-gmail-address>
 MAIL_PASSWORD=<your-gmail-app-password>
-```[cite: 1]
 
-Use a **Gmail App Password**, not your normal Gmail password.[cite: 1]
+
+Use a **Gmail App Password**, not your normal Gmail password.
 
 ### 4. Start the Spring Boot backend
 
-```bash
+
 cd telecom
 .\mvnw.cmd spring-boot:run
-```[cite: 1]
+
 
 The backend runs on:
 
-```text
+
 http://localhost:8080
-```[cite: 1]
+
 
 ### 5. Start the frontend
 
-Open the `telecom-frontend` folder using a local development server.[cite: 1]
+Open the `telecom-frontend` folder using a local development server.
 
-The frontend communicates with the backend through REST APIs.[cite: 1]
+The frontend communicates with the backend through REST APIs.
 
 ---
 
@@ -353,7 +343,6 @@ The frontend communicates with the backend through REST APIs.[cite: 1]
 
 ### Customer Flow
 
-```text
 Register
    ↓
 Email Verification
@@ -373,11 +362,9 @@ Recharge
 Simulate Usage
    ↓
 Track Remaining Benefits
-```[cite: 1]
 
 ### Admin Flow
 
-```text
 Admin Login
     ↓
 Admin Dashboard
@@ -387,7 +374,6 @@ Manage Customers
 Manage SIM Cards
     ↓
 Manage Mobile Plans
-```[cite: 1]
 
 ---
 
@@ -395,7 +381,7 @@ Manage Mobile Plans
 
 The main entities in the system are:
 
-```text
+
 User
  ├── Customer
  ├── Admin
@@ -418,7 +404,7 @@ Subscription
 
 VerificationCode
    └── User
-```[cite: 1]
+
 
 ---
 
